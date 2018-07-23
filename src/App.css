@@ -1,0 +1,76 @@
+html,body{
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  height: 100%;
+}
+
+#root {
+  height: 100%
+}
+/*navigation bar section*/
+.header {
+  background-color: #212121;
+  padding: 15px;
+  color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+h1 {
+  margin: auto;
+}
+
+i:hover {
+  cursor: pointer;
+  color: #507CAF;
+}
+
+.main {
+  margin-left: 300px;
+  height: 100%;
+}
+
+/*side bar*/
+
+.side-nav {
+  width: 300px;
+  height: 100%;
+  background-color: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+h3 {
+  color: #FFF;
+}
+
+input {
+      padding: 10px;
+}
+
+.butn {
+
+  background: #3498db;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #FFF;
+  border: 0;
+}
+
+.butn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*map section*/
+
+.map-section {
+  height: calc(100% - 67px);
+  background-color: blue;
+}
