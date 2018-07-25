@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
+import Menu from './menu.js'
 
 class App extends Component {
+  state={
+    isOpen:true,
+  }
+
+  handleClick=()=> {
+	this.setState({
+		isOpen: !this.state.isOpen
+	});
+}
+
+// <i className="fas fa-bars" onClick={this.handleClick} ></i>
   render() {
     return (
       <div className="App">
-        <nav className="side-nav">
-        <h3>Bart Location</h3>
-        <div>
-        <input type="text" placeholder="station location"/>
-        <button type="button" name="button" className="butn">Filter</button>
-        </div>
-        </nav>
+        <Menu open={this.state.isOpen} />
         <div className="main">
         <header className="header">
-          <i className="fas fa-bars"></i>
+          <img src="icon.svg" onClick={this.handleClick} className="bar-icon"/>
           <h1>Neighborhood Map</h1>
         </header>
-        <div className="map-section">
-        </div>
+
         </div>
       </div>
     );
