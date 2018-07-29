@@ -7,8 +7,8 @@
  1. download the files ,Click `"Clone in Desktop" / "Download ZIP"`.
  2. extract the files.
  3. Change to root directory.
- 4. Install dependencies: npm install.
- 5. Start the app: npm start(will open the browser on http://localhost:3000).
+ 4. Install dependencies: `npm install`.
+ 5. Start the app: `npm start`(will open the browser on http://localhost:3000).
  
  ## Requirments
  
