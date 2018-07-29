@@ -11,7 +11,9 @@ html,body{
 #root {
   height: 100%
 }
+
 /*navigation bar section*/
+
 .header {
   background-color: #212121;
   padding: 15px;
@@ -41,12 +43,22 @@ h1 {
   cursor: pointer;
 }
 
+/* map section */
+
+#map {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
 /*side bar*/
 
 .side-nav-open {
   width: 300px;
   height: 100%;
   background-color: #000000;
+  overflow-y: scroll;
 }
 
 .side-nav-close {
@@ -63,24 +75,22 @@ input {
       padding: 10px;
 }
 
-.butn {
-
-  background: #3498db;
-  padding: 12px 20px;
-  text-decoration: none;
-  color: #FFF;
-  border: 0;
+ul {
+  list-style-type: none;
+  padding: 4px 3px;
 }
 
-.butn:hover {
-  background: #3cb0fd;
-  text-decoration: none;
+li {
+  color: #FFF;
+  padding: 6px;
   cursor: pointer;
 }
 
-/*map section*/
-
-
+li:hover{
+  color: #3CB0FD;
+  border-style: solid;
+  border-color: #F00;
+}
 /* media queries */
 
 @media only screen and (max-width: 600px) {
@@ -90,6 +100,11 @@ input {
 
   .header {
     padding: 12px;
+  }
+
+  #info {
+    max-width: 200px;
+    max-height: 300px;
   }
 }
 
@@ -146,8 +161,4 @@ input {
     padding-right: 20px;
   }
 
-  .butn {
-    padding-left: 25px;
-    padding-right: 25px;
-  }
 }
