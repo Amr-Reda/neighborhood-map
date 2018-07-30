@@ -33,7 +33,7 @@ class App extends Component {
           center: {lat: 31.200092, lng: 29.918739},
           zoom: 15,
       });
-
+      map.err
       var InfoWindow = new window.google.maps.InfoWindow({});
       this.setState({
         infoWindow:InfoWindow,
@@ -69,6 +69,15 @@ class App extends Component {
       window.google.maps.event.addListener(map, "click", function() {
       self.closeInfoWindow();
     });
+
+    window.gm_authFailure = function() {
+           var map=document.getElementById('map');
+           map.firstElementChild.remove()
+           var node = document.createElement("h2");
+            var textnode = document.createTextNode("Google maps failed to load!");
+            node.appendChild(textnode);
+            map.appendChild(node);
+        }
 
     }
 

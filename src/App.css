@@ -12,6 +12,10 @@ html,body{
   height: 100%
 }
 
+h2 {
+  color: #FF4500;
+}
+
 /*navigation bar section*/
 
 .header {
