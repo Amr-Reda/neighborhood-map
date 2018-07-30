@@ -3,6 +3,7 @@ import './App.css';
 import Menu from './menu.js'
 import * as Data from './data.json'
 
+
 class App extends Component {
    constructor(props) {
      super(props);
@@ -19,11 +20,13 @@ class App extends Component {
      this.updateMarkers=this.updateMarkers.bind(this);
    }
 
+// load map script
   componentDidMount() {
     window.initMap = this.initMap;
     loadMapJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyCkGcWPb3fQaqTLLb6aHd2ejm9qIX4kifA&callback=initMap')
     }
 
+// initialize the map , infoWindow , bounds of map , markers
   initMap() {
     var self = this;
       var map = new window.google.maps.Map(document.getElementById('map'), {
@@ -69,8 +72,8 @@ class App extends Component {
 
     }
 
+// redraw the filtered marker
     updateMarkers(filteredPlaces){
-      var bounds=new window.google.maps.LatLngBounds();
       this.state.markers.map((marker)=>{
         marker.setVisible(false);
       });
@@ -79,15 +82,14 @@ class App extends Component {
         for (var i = 0; i < filteredPlaces.length; i++) {
           if(filteredPlaces[i].name===marker.title){
             marker.setVisible(true);
-            bounds.extend(marker.position);
             break;
             }
           }
         }
       );
-      this.state.map.fitBounds(bounds);
     }
 
+// open the infoWindow
     openInfoWindow(marker){
       this.state.map.setCenter(marker.getPosition());
       this.state.map.panBy(0, -100);
@@ -96,6 +98,7 @@ class App extends Component {
       this.state.infoWindow.open(this.state.map,marker);
     }
 
+// get the info from the API
     getInfo(title){
       var self = this;
       var url ="https://en.wikipedia.org/w/api.php?&origin=*&action=query&format=json&prop=extracts&exintro=1&titles="+title;
@@ -112,15 +115,17 @@ class App extends Component {
     var Data=data.query.pages;
     var string="<h4>"+title+"</h4>";
     self.state.infoWindow.setContent(`<div id="info">`+string+Data[Object.keys(Data)[0]].extract+"</div>");
-
+}).catch(function (err) {
+  self.state.infoWindow.setContent("Network Error");
 });
   }
 
-
+// close the infoWindow
   closeInfoWindow(){
     this.state.infoWindow.close();
   }
 
+// open and close the side bar
   toggleSideBar = ()=> {
 	this.setState({
 		isOpen: !this.state.isOpen
@@ -132,14 +137,14 @@ class App extends Component {
       <div className="App">
 
         <Menu open={this.state.isOpen}
-           markers={this.state.markers}
-            openInfoWindow={this.openInfoWindow}
+              markers={this.state.markers}
+              openInfoWindow={this.openInfoWindow}
               closeInfoWindow={this.closeInfoWindow}
-                updateMarkers={this.updateMarkers}/>
+              updateMarkers={this.updateMarkers}/>
 
         <div className="main">
         <header className="header">
-          <img src="icon.svg" alt="icon" onClick={this.toggleSideBar} className="bar-icon"/>
+          <img src="icon.svg" alt="bar icon" onClick={this.toggleSideBar} className="bar-icon"/>
           <h1>Neighborhood Map</h1>
         </header>
         <div id="map"></div>
@@ -152,6 +157,7 @@ class App extends Component {
 
 export default App;
 
+// to load the google map script
 function loadMapJS(src) {
  var ref = window.document.getElementsByTagName("script")[0];
  var script = window.document.createElement("script");

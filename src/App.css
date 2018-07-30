@@ -86,7 +86,7 @@ li {
   cursor: pointer;
 }
 
-li:hover{
+li:hover,li:focus,input:focus{
   color: #3CB0FD;
   border-style: solid;
   border-color: #F00;

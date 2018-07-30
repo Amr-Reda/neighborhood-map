@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as Data from './data.json'
+import PropTypes from 'prop-types'
+
 
 class Menu extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class Menu extends Component {
     }
   }
 
+// take the selected item and open the infoWindow of the selected item
   handleClick(item){
     var markTitle=item.innerText;
     var markers=this.props.markers;
@@ -17,6 +20,7 @@ class Menu extends Component {
     this.props.openInfoWindow(element[0]);
   }
 
+// take the search query and filter the markers and show the filtered markers on the map
   updateQuery(query){
     this.props.closeInfoWindow();
 
@@ -47,12 +51,18 @@ this.props.updateMarkers(filteredPlaces);
         <nav className="side-nav-open">
         <h3>Filter Locations</h3>
         <div>
-        <input type="text" placeholder="station location" onChange={(event)=>this.updateQuery(event.target.value)}/>
+        <input type="text" placeholder="Filter locations" role="search" value={this.state.query} onChange={(event)=>this.updateQuery(event.target.value)}/>
         <ul>
           {this.state.query==="" ?(
-            Data.places.map((place)=>(<li key={place.name} onClick={(event)=>this.handleClick(event.target)}>{place.name}</li>))
+            Data.places.map((place)=>(<li key={place.name}
+                                          tabIndex="0"
+                                          onClick={(event)=>this.handleClick(event.target)}
+                                          onKeyPress={(event)=>this.handleClick(event.target)}>{place.name}</li>))
           ):(
-            this.state.results.map((place)=>(<li key={place.name} onClick={(event)=>this.handleClick(event.target)}>{place.name}</li>))
+            this.state.results.map((place)=>(<li key={place.name}
+                                                 tabIndex="0"
+                                                 onClick={(event)=>this.handleClick(event.target)}
+                                                 onKeyPress={(event)=>this.handleClick(event.target)}>{place.name}</li>))
 
           )
           }
@@ -76,6 +86,14 @@ this.props.updateMarkers(filteredPlaces);
       </div>
     );
   }
+}
+
+Menu.propTypes={
+  open:PropTypes.bool.isRequired,
+  markers:PropTypes.array.isRequired,
+  openInfoWindow:PropTypes.func.isRequired,
+  closeInfoWindow:PropTypes.func.isRequired,
+  updateMarkers:PropTypes.func.isRequired
 }
 
 export default Menu;
