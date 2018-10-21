@@ -2,7 +2,7 @@
 
  a single page application featuring a map of Alexandria neighborhood . this map including highlighted locations, third-party data from wikipedia API about those locations and various ways to browse the content.
  
- see the demo at https://peaceful-atoll-71562.herokuapp.com/
+ see the demo at https://neighborhood-map-reactjs.herokuapp.com/
  
  ## Installition
  
